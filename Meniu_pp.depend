@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1709234407 source:d:\codeblocks projects\meniu_pp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+
+1712256537 source:c:\users\iasmina\facultate\meniu_pp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+
+1713713469 source:c:\users\iasmina\facultate\codeblocks projects\meniu_pp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+
+1713714060 source:c:\users\iasmina\facultate\anul 1\codeblocks projects\meniu_pp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+

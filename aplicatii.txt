@@ -1,0 +1,110 @@
+27
+Netflix
+Divertisment
+Installed
+1.000000
+Amazon Prime Video
+Divertisment
+Installed
+2.000000
+HBO Max: Filme si seriale TV
+Divertisment
+Installed
+2.000000
+SkyShowtime: Filme si seriale
+Divertisment
+Not installed
+3.000000
+Disney+
+Divertisment
+Installed
+0.500000
+Duolingo:invata limbi straine
+Educational
+Installed
+2.000000
+Jocuri de matematica
+Educational
+Not installed
+2.000000
+Periodic Table Quiz
+Educational
+Installed
+2.000000
+Drbc
+Educational
+Installed
+34.000000
+Kahoot! Play & Create Quizzes
+Educational
+Installed
+2.000000
+Triviador
+Educational
+Not installed
+2.000000
+Carti de citit
+Educational
+Installed
+12.000000
+Shazam: Find Music & Concerts
+Muzica
+Not installed
+3.000000
+Spotify: muzica si podcasturi
+Muzica
+Installed
+3.000000
+Muzica player - MP3 player
+Muzica
+Not installed
+2.000000
+Offline Music Player
+Muzica
+Not installed
+1.000000
+Samsung Music
+Muzica
+Installed
+2.000000
+Notion - notes, docs, tasks
+Productivitate
+Not installed
+0.500000
+PDF Reader - PDF Viewer
+Productivitate
+Not installed
+1.000000
+Google Calendar
+Productivitate
+Not installed
+0.500000
+Forest: Focus for Productivity
+Productivitate
+Not installed
+2.000000
+Microsoft 365 Office
+Productivitate
+Installed
+4.000000
+Instagram
+Social
+Not installed
+5.000000
+Drdr
+Social
+Installed
+45.000000
+Facebook
+Social
+Installed
+5.000000
+Messenger
+Social
+Not installed
+4.000000
+WhatApp Messenger
+Social
+Installed
+3.000000
+00
