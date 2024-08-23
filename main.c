@@ -11,6 +11,7 @@ Utilizatorul are acces la statistici despre numărul de aplicații instalate per
 La începutul aplicației, utilizatorul trebuie înregistrat pentru a avea acces la aplicațiile sale și la catalog.
 */
 
+
 struct aplicatie{
     char nume_aplicatie[100];
     float dimensiune;
@@ -18,7 +19,7 @@ struct aplicatie{
     char categorie[100];
 }aplicatii[100];
 
-int comparare_categorii(const void *a, const void *b) {
+int compareCategories(const void *a, const void *b) {
     const struct aplicatie *aplicatie_a = (const struct aplicatie *)a;
     const struct aplicatie *aplicatie_b = (const struct aplicatie *)b;
     return strcmp(aplicatie_a->categorie, aplicatie_b->categorie);
@@ -31,10 +32,56 @@ void show_menu()
         printf("(S)tatistici aplicatii\n");
         printf("(I)esire\n");
 }
+void loadApplicationList(int nr_apps)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    printf("Lista aplicatii\n");
+
+    for (int i = 0; i < nr_apps; ++i) {
+        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
+        printf("%d. %s ", i+1, aplicatii[i].nume_aplicatie);
+        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN);
+        printf("(%s) ", aplicatii[i].categorie);
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
+        printf("(%s) ", aplicatii[i].instalat);
+        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
+        printf("(");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("%0.1f GB", aplicatii[i].dimensiune);
+        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
+        printf(")\n");
+    }
+
+}
+
+void applicationsOrganizedByCategory(int nr_apps)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    for (int i = 0; i < nr_apps; ++i) {
+      if(i==0) printf("%s\n", aplicatii[i].categorie);
+
+        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
+        printf("%s ",  aplicatii[i].nume_aplicatie);
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
+        printf("(%s) ", aplicatii[i].instalat);
+
+        printf("(");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("%0.1f GB", aplicatii[i].dimensiune);
+        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
+        printf(")\n");
+
+            if(strcmp(aplicatii[i].categorie, aplicatii[i+1].categorie)!=0) printf("%s\n", aplicatii[i+1].categorie);
+    }
+
+}
+
 
 int main() {
-     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
     char a[10], e[100], p[100];
     int ok=1, nr_apps;
@@ -83,27 +130,8 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
     {
 
     case 76:{
-system("cls");
-    printf("Lista aplicatii\n");
-
-
-
-    for (int i = 0; i < nr_apps; ++i) {
-        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
-        printf("%d. %s ", i+1, aplicatii[i].nume_aplicatie);
- SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN);
-        printf("(%s) ", aplicatii[i].categorie);
-
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
-        printf("(%s) ", aplicatii[i].instalat);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf("(");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-        printf("%0.1f GB", aplicatii[i].dimensiune);
-        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf(")\n");
-    }
-
+    system("cls");
+    loadApplicationList(nr_apps);
     printf("Doriti sa adaugati o aplicatie?\n");
     printf("(Y)es / (N)o.\n");
          break;
@@ -132,7 +160,7 @@ system("cls");
     FILE* fw = fopen("aplicatii.txt", "w");
     fprintf(fw, "%d\n", nr_apps);
     for (int i = 0; i < nr_apps; ++i) {
-        fprintf(fw, "%s\n%s%s\n\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
+        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
     }
     fclose(fw);
      system("cls");
@@ -145,46 +173,28 @@ system("cls");
 
     case 66:
         {
-system("cls");
+        system("cls");
         show_menu();
-            break;
+        break;
         }
+
     case 67:
         {
-    system("cls");
-    printf("Categorii aplicatii\n");
-    qsort(aplicatii, nr_apps, sizeof(struct aplicatie), comparare_categorii);
+        system("cls");
+        printf("Categorii aplicatii\n");
+        qsort(aplicatii, nr_apps, sizeof(struct aplicatie), compareCategories);
 
-    // Afisam aplicatiile sortate dupa categorie
+        applicationsOrganizedByCategory(nr_apps);
+        printf("\n(B)ack\n");
 
-    for (int i = 0; i < nr_apps; ++i) {
-      if(i==0) printf("%s\n", aplicatii[i].categorie);
-
-        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
-        printf("%s ",  aplicatii[i].nume_aplicatie);
-
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
-        printf("(%s) ", aplicatii[i].instalat);
-
-        printf("(");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-        printf("%0.1f GB", aplicatii[i].dimensiune);
-        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf(")\n");
-
-            if(strcmp(aplicatii[i].categorie, aplicatii[i+1].categorie)!=0) printf("%s\n", aplicatii[i+1].categorie);
-    }
-
-            printf("\n(B)ack\n");
-
-break;
+        break;
         }   // key down
 
     case 83:
         {
             system("cls");
 
-    int nrd=0, nrm=0, nrs=0, nrp=0, nre=0;
+            int nrd=0, nrm=0, nrs=0, nrp=0, nre=0;
 
             for (int i = 0; i < nr_apps; ++i) {
                 if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Divertisment")==0) { nrd++; /*printf("%d", v[0]);*/}
