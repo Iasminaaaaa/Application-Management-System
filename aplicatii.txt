@@ -1,4 +1,4 @@
-27
+29
 Netflix
 Divertisment
 Installed
@@ -97,7 +97,7 @@ Installed
 45.000000
 Facebook
 Social
-Installed
+Not installed
 5.000000
 Messenger
 Social
@@ -107,4 +107,11 @@ WhatApp Messenger
 Social
 Installed
 3.000000
-00
+Tiktok 2024
+Social
+Installed
+3.400000
+Discord
+Social
+Not installed
+4.400000
