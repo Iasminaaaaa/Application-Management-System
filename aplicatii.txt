@@ -1,8 +1,4 @@
-29
-Netflix
-Divertisment
-Installed
-1.000000
+31
 Amazon Prime Video
 Divertisment
 Installed
@@ -19,6 +15,10 @@ Disney+
 Divertisment
 Installed
 0.500000
+Netflix
+Divertisment
+Installed
+1.000000
 Duolingo:invata limbi straine
 Educational
 Installed
@@ -47,10 +47,10 @@ Carti de citit
 Educational
 Installed
 12.000000
-Shazam: Find Music & Concerts
-Muzica
-Not installed
-3.000000
+Github
+Educational
+Installed
+5.000000
 Spotify: muzica si podcasturi
 Muzica
 Installed
@@ -59,18 +59,18 @@ Muzica player - MP3 player
 Muzica
 Not installed
 2.000000
-Offline Music Player
+Shazam: Find Music & Concerts
 Muzica
 Not installed
-1.000000
+3.000000
 Samsung Music
 Muzica
 Installed
 2.000000
-Notion - notes, docs, tasks
-Productivitate
+Offline Music Player
+Muzica
 Not installed
-0.500000
+1.000000
 PDF Reader - PDF Viewer
 Productivitate
 Not installed
@@ -83,19 +83,15 @@ Forest: Focus for Productivity
 Productivitate
 Not installed
 2.000000
+Notion - notes, docs, tasks
+Productivitate
+Not installed
+0.500000
 Microsoft 365 Office
 Productivitate
 Installed
 4.000000
 Instagram
-Social
-Not installed
-5.000000
-Drdr
-Social
-Installed
-45.000000
-Facebook
 Social
 Not installed
 5.000000
@@ -105,7 +101,7 @@ Not installed
 4.000000
 WhatApp Messenger
 Social
-Installed
+Not installed
 3.000000
 Tiktok 2024
 Social
@@ -115,3 +111,15 @@ Discord
 Social
 Not installed
 4.400000
+Facebook
+Social
+Not installed
+5.000000
+Drdr
+Social
+Installed
+45.000000
+Duolingo 2024
+Educational
+Not installed
+3.400000

@@ -78,6 +78,55 @@ void applicationsOrganizedByCategory(int nr_apps)
 
 }
 
+void displayLabeledAppList(int nr_apps)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+     for (int i = 0; i < nr_apps; ++i) {
+        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
+        printf("%d. %s ", i+1, aplicatii[i].nume_aplicatie);
+ SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN);
+        printf("(%s) ", aplicatii[i].categorie);
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
+        printf("(%s) ", aplicatii[i].instalat);
+     SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
+        printf("(");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("%0.1f GB", aplicatii[i].dimensiune);
+        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
+        printf(")\n");
+
+    }
+}
+
+void registerApplication(int nr_apps)
+{
+    FILE* fw = fopen("aplicatii.txt", "w");
+    fprintf(fw, "%d\n", nr_apps);
+
+    for (int i = 0; i < nr_apps; ++i) {
+        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
+    }
+
+    fclose(fw);
+}
+
+void modifyAppInstallationStatus(int nr_apps)
+{
+    FILE* fw = fopen("aplicatii.txt", "r+"); // Deschidem fisierul in modul "r+" (read/write)
+
+
+    fseek(fw, 0, SEEK_SET);
+    fprintf(fw, "%d\n", nr_apps);
+
+    for (int i = 0; i < nr_apps; ++i) {
+        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
+    }
+
+    fclose(fw);
+}
+
+
 
 int main() {
 
@@ -157,12 +206,8 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
 
     nr_apps++;
 
-    FILE* fw = fopen("aplicatii.txt", "w");
-    fprintf(fw, "%d\n", nr_apps);
-    for (int i = 0; i < nr_apps; ++i) {
-        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
-    }
-    fclose(fw);
+    registerApplication(nr_apps);
+
      system("cls");
     printf("Vreti sa (i)nstalati sau (d)ezinstalati o aplicatie? Nu.(B)ack\n");
          break;
@@ -197,8 +242,8 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
             int nrd=0, nrm=0, nrs=0, nrp=0, nre=0;
 
             for (int i = 0; i < nr_apps; ++i) {
-                if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Divertisment")==0) { nrd++; /*printf("%d", v[0]);*/}
-                if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Social")==0) {nrs++;} //printf("%d", nrs);printf("%s ", aplicatii[i].nume_aplicatie);}
+                if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Divertisment")==0) nrd++;
+                if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Social")==0) nrs++;
                 if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Educational")==0) nre++;
                 if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Productivitate")==0) nrp++;
                 if(strcmp(aplicatii[i].instalat, "Installed")==0 && strcmp(aplicatii[i].categorie, "Muzica")==0) nrm++;
@@ -281,38 +326,14 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
     case 105:
         {
 
-            system("cls");
-        for (int i = 0; i < nr_apps; ++i) {
-        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
-        printf("%d. %s ", i+1, aplicatii[i].nume_aplicatie);
- SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN);
-        printf("(%s) ", aplicatii[i].categorie);
+        system("cls");
+        displayLabeledAppList(nr_apps);
 
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
-        printf("(%s) ", aplicatii[i].instalat);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf("(");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-        printf("%0.1f GB", aplicatii[i].dimensiune);
-        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf(")\n");
-
-    }
         int aux;
         printf("Alegeti indicativul aplicatiei pe care doriti sa o instalati:\n");scanf("%d", &aux);
         strcpy(aplicatii[aux-1].instalat, "Installed");
 
-    FILE* fw = fopen("aplicatii.txt", "r+");
-
-
-    fseek(fw, 0, SEEK_SET);
-    fprintf(fw, "%d\n", nr_apps);
-
-    for (int i = 0; i < nr_apps; ++i) {
-        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
-    }
-
-    fclose(fw);
+    modifyAppInstallationStatus(nr_apps);
     system("cls");
     printf("Vreti sa (i)nstalati sau (d)ezinstalati o aplicatie? Nu.(B)ack\n");
     break;
@@ -321,44 +342,18 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
  case 100:
         {
         system("cls");
-        for (int i = 0; i < nr_apps; ++i) {
-        SetConsoleTextAttribute(hConsole,FOREGROUND_BLUE | FOREGROUND_GREEN);
-        printf("%d. %s ", i+1, aplicatii[i].nume_aplicatie);
- SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN);
-        printf("(%s) ", aplicatii[i].categorie);
-
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED & FOREGROUND_GREEN  | FOREGROUND_BLUE);
-        printf("(%s) ", aplicatii[i].instalat);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf("(");
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-        printf("%0.1f GB", aplicatii[i].dimensiune);
-        SetConsoleTextAttribute(hConsole,FOREGROUND_RED | FOREGROUND_GREEN| FOREGROUND_BLUE);
-        printf(")\n");
-
-    }
+        displayLabeledAppList(nr_apps);
         int aux;
         printf("Alegeti indicativul aplicatiei pe care doriti sa o dezinstalati:\n");scanf("%d", &aux);
         strcpy(aplicatii[aux-1].instalat, "Not installed");
 
 
-    FILE* fw = fopen("aplicatii.txt", "r+"); // Deschidem fisierul in modul "r+" (read/write)
+    modifyAppInstallationStatus(nr_apps);
 
-
-    fseek(fw, 0, SEEK_SET);
-    fprintf(fw, "%d\n", nr_apps);
-
-    for (int i = 0; i < nr_apps; ++i) {
-        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
-    }
-
-    fclose(fw);
     system("cls");
     printf("Vreti sa (i)nstalati sau (d)ezinstalati o aplicatie? Nu.(B)ack\n");
     break;
 }
-
-
 
    }
 }
