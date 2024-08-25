@@ -127,7 +127,6 @@ void modifyAppInstallationStatus(int nr_apps)
 }
 
 
-
 int main() {
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -170,8 +169,6 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
 
 }
 
-
-
     while(ok!=0)
    {
 
@@ -206,8 +203,15 @@ printf("Introduceti email-ul:"); scanf("%s", e); getchar();
 
     nr_apps++;
 
+
     registerApplication(nr_apps);
 
+    FILE* fw = fopen("aplicatii.txt", "w");
+    fprintf(fw, "%d\n", nr_apps);
+    for (int i = 0; i < nr_apps; ++i) {
+        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
+    }
+    fclose(fw);
      system("cls");
     printf("Vreti sa (i)nstalati sau (d)ezinstalati o aplicatie? Nu.(B)ack\n");
          break;

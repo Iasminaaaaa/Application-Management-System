@@ -1,4 +1,8 @@
-31
+29
+Netflix
+Divertisment
+Installed
+1.000000
 Amazon Prime Video
 Divertisment
 Installed
@@ -95,6 +99,14 @@ Instagram
 Social
 Not installed
 5.000000
+Drdr
+Social
+Installed
+45.000000
+Facebook
+Social
+Not installed
+5.000000
 Messenger
 Social
 Not installed
@@ -103,23 +115,3 @@ WhatApp Messenger
 Social
 Not installed
 3.000000
-Tiktok 2024
-Social
-Installed
-3.400000
-Discord
-Social
-Not installed
-4.400000
-Facebook
-Social
-Not installed
-5.000000
-Drdr
-Social
-Installed
-45.000000
-Duolingo 2024
-Educational
-Not installed
-3.400000
