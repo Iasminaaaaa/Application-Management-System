@@ -243,8 +243,8 @@ int main() {
         fscanf(file_aplicatii, "%f\n", &aplicatii[i].dimensiune);
     }
 
-    while(ok!=0)
-   {
+while(ok!=0)
+{
 
     switch(getch())
     {
@@ -260,33 +260,29 @@ int main() {
         break;
     }
 
-    case 66:
-        {
+    case 66:{
     showMenu();
     break;
-        }
+    }
 
-    case 67:
-        {
+    case 67:{
     qsort(aplicatii, nr_apps, sizeof(struct aplicatie), comparare_categorii);
     applicationsOrganizedByCategory(nr_apps);
     printf("\n(B)ack\n");
     break;
-        }
+    }
 
-    case 83:
-        {
+    case 83:{
         displayStatistics(nr_apps);
         printf("\n(B)ack\n");
         break;
-        }
+    }
 
-    case 73:
-        {
+    case 73:{
         system("cls");
         printf("Aplicatie inchisa cu succes!\n");
         ok=0;
-        }
+    }
         break;
 
     case 78:{
@@ -296,37 +292,23 @@ int main() {
 
     }
 
-    case 105:
-        {
+    case 105:{
         displayLabeledAppList(nr_apps);
         int aux;
         printf("Alegeti indicativul aplicatiei pe care doriti sa o instalati:\n");scanf("%d", &aux);
         strcpy(aplicatii[aux-1].instalat, "Installed");
-
-    FILE* fw = fopen("aplicatii.txt", "r+");
-
-    fseek(fw, 0, SEEK_SET);
-    fprintf(fw, "%d\n", nr_apps);
-
-    for (int i = 0; i < nr_apps; ++i) {
-        fprintf(fw, "%s\n%s\n%s\n%f\n", aplicatii[i].nume_aplicatie, aplicatii[i].categorie, aplicatii[i].instalat, aplicatii[i].dimensiune);
+        modifyAppInstallationStatus(nr_apps);
+        break;
     }
 
-    fclose(fw);
-    system("cls");
-    printf("Vreti sa (i)nstalati sau (d)ezinstalati o aplicatie? Nu.(B)ack\n");
-    break;
-}
-
- case 100:
-        {
+    case 100:{
         displayLabeledAppList(nr_apps);
         int aux;
         printf("Alegeti indicativul aplicatiei pe care doriti sa o dezinstalati:\n");scanf("%d", &aux);
         strcpy(aplicatii[aux-1].instalat, "Not installed");
         modifyAppInstallationStatus(nr_apps);
         break;
-        }
+    }
    }
 }
 
